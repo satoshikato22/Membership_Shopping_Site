@@ -16,7 +16,8 @@ public class CartAddController {
 
 	@GetMapping("/cartAdd")
 	public String getCartAdd() {
-
+		//int id = Integer.parseInt(request.getParameter("id"));
+		//System.out.println(id);
 		/*List<Item> cart = (List<Item>) session.getAttribute("cart");
 		if(cart == null) {
 			cart = new ArrayList<Item>();
