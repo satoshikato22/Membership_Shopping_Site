@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>商品検索結果</h1>
+<div th:each="product : ${productList}">
+	<p th:text="${product.id}" />
+	<p th:text="${product.name}" />
+	<p th:text="${product.price}" />
+	<a href="/cartAdd" th:href="@{/cartAdd(id=${'product.id'})}">カートに追加</a>
+</div>
+</body>
+</html>
