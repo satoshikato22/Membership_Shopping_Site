@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>cart</title>
@@ -7,6 +7,17 @@
 <body>
 
 <h1>テストページ</h1>
+<p th:text="${session.cart.size()} > 0 ? ${session.cart.size()} +'種類の商品があります':'カートに商品がありません'"></p>
+
+<div th:each="item : ${session.cart}">
+	<!-- <img th:src = "@{image/${item.product.id}.jpg}" height="96"/>  -->
+	<img th:src="@{images/${item.product.id}.jpg}" />
+	<p th:text="${item.product.name}" />
+	<p th:text="${item.product.price}" />
+	<p th:text="${item.count}">
+	<p><a href="/cartRemove" th:href="@{/cartRemove(id=${item.product.id})}">カートから削除</a></p>
+</div>
+
 
 
 </body>

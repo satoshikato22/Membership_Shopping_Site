@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -16,11 +17,12 @@ public class CartRemoveController {
 	@Autowired
 	HttpSession session;
 	@SuppressWarnings("unchecked")
-	@GetMapping("/catRemove")
-	public String getRemove(@RequestParam("id") int id ) {
+	@GetMapping("/cartRemove")
+	public String getRemove(@RequestParam String id,Model model ) {
+		int id1 = Integer.parseInt(id);
 		List<Item> cart = (List<Item>) session.getAttribute("cart");
 		for(Item i : cart) {
-			if(i.getProduct().getId()==id) {
+			if(i.getProduct().getId()==id1) {
 				cart.remove(i);
 				break;
 			}
