@@ -51,7 +51,6 @@ public class CustomerDaoJdbcImpl implements CustomerDao{
 		//取得したデータを結果返却用のListに格納していく
 		for(Map<String,Object> map : getList) {
 			PurchaseHistory purchaseHistory = new PurchaseHistory();
-
 			purchaseHistory.setProductid((Integer)map.get("productid"));
 			purchaseHistory.setProductname((String)map.get("productname"));
 			purchaseHistory.setProductprice((Integer)map.get("productprice"));
@@ -77,9 +76,19 @@ public class CustomerDaoJdbcImpl implements CustomerDao{
 	}
 
 	@Override
-	public void userCsvOut() throws DataAccessException {
+	public void customerCsvOut() throws DataAccessException {
 		// TODO 自動生成されたメソッド・スタブ
+		// M_USERテーブルのデータを全件取得するSQL
+        String sql = "SELECT * FROM purchase";
+
+        // ResultSetExtractorの生成
+        UserRowCallbackHandler handler = new UserRowCallbackHandler();
+
+        //SQL実行＆CSV出力
+        jdbc.query(sql, handler);
 
 	}
+
+
 
 }

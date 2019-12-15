@@ -6,7 +6,7 @@
 </head>
 <body>
     <!-- コンテンツ部分 -->
-    <div th:fragment="userList_contents">
+    <div th:fragment="HistoryList_contents">
         <div class="page-header">
             <h1>購入履歴一覧</h1>
         </div>
@@ -19,25 +19,17 @@
                 <th class="info col-sm-2">お客様</th>
                 <th class="info col-sm-2">住所</th>
             </tr>
-            <tr th:each="purchaseHistory : ${purchaseHistory}">
-                <td th:text="${purchaseHistory.productid}"></td>
-                <td th:text="${purchaseHistory.productname}"></td>
-                <td th:text="${purchaseHistory.productprice}"></td>
-                <td th:text="${purchaseHistory.productcount}"></td>
-                <td th:text="${purchaseHistory.customername}"></td>
-                <td th:text="${purchaseHistory.customeraddress}"></td>
-                <td>
-                    <!-- ユーザー詳細画面へのリンク -->
-                    <a class="btn btn-primary" th:href="@{'/userDetail/' + ${user.userId}}">詳細</a>
-                </td>
+            <tr th:each="historyList : ${HistoryList}">
+                <td th:text="${historyList.productid}"></td>
+                <td th:text="${historyList.productname}"></td>
+                <td th:text="${historyList.productprice}"></td>
+                <td th:text="${historyList.productcount}"></td>
+                <td th:text="${historyList.customername}"></td>
+                <td th:text="${historyList.customeraddress}"></td>
             </tr>
         </table>
-        <!-- ユーザー一覧の件数 -->
-        <label th:text=" '合計：' + ${userListCount} + '件' "></label><br/>
-        <!-- 更新・削除処理の結果表示用 -->
-        <label class="text-info" th:text="${result}">結果表示</label><br/>
         <!-- CSV出力用のリンク -->
-        <a class="btn btn-primary" th:href="@{'/userList/csv'}">CSV出力</a>
+        <a class="btn btn-primary" th:href="@{'/HistoryList/csv'}">CSV出力</a>
     </div>
 </body>
 </html>

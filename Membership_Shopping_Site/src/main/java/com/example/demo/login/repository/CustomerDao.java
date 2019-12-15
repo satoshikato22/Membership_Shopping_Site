@@ -21,5 +21,5 @@ public interface CustomerDao {
 	//Customerテーブルのデータを1件削除
 	public int deleteOne(String customerId) throws DataAccessException;
 	//SQL取得結果をサーバーにCSVで保存する
-	public void userCsvOut() throws DataAccessException;
+	public void customerCsvOut() throws DataAccessException;
 }
