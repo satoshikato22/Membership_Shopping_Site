@@ -12,6 +12,7 @@
 </form>
 <div th:each="product : ${productList}">
 	<p th:text="${product.id}" />
+	<img th:src="@{/image/{items}.jpg(items=${product.id})}" height="96"></img>
 	<p th:text="${product.name}" />
 	<p th:text="${product.price}" />
 	<a href="/cartAdd" th:href="@{/cartAdd(id=${product.id})}">カートに追加</a>

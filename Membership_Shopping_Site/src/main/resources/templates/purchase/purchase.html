@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>cart</title>
+<title>購入画面</title>
 </head>
 <body>
 <h1>商品検索画面</h1>
@@ -10,7 +10,8 @@
 商品名を入力<input type="text" name="keyword" th:value="${keyword1_value}" />
 <input type="submit" value="送信">
 </form>
-<h1>テストページ</h1>
+
+<h1>購入画面</h1>
 <p th:text="${session.cart.size()} > 0 ? ${session.cart.size()} +'種類の商品があります':'カートに商品がありません'"></p>
 
 <div th:each="item : ${session.cart}">
@@ -19,11 +20,16 @@
 	<img th:src="@{/image/{items}.jpg(items=${item.product.id})}" height="96"></img>
 	<p th:text="${item.product.name}" />
 	<p th:text="${item.product.price}" />
-	<p th:text="${item.count}" />
+	<p th:text="${item.count}">
 	<p><a href="/cartRemove" th:href="@{/cartRemove(id=${item.product.id})}">カートから削除</a></p>
 </div>
-	<span th:if="${session.cart.size() > 0}">
-    	<p><a href="/purchase" th:href="@{/purchase}">購入する</a></p>
-	</span>
+<span th:if="${session.cart.size() > 0}">
+	<form action="/purchase" method="post">
+	<p>お名前<input type="text" name="name" th:value="${name_value}"></p>
+	<p>ご住所<input type="text" name="address" th:value="${address_value}"></p>
+	<p><input type="submit" value="購入を確定"></p>
+</form>
+</span>
+
 </body>
 </html>
