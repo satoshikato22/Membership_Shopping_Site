@@ -1,6 +1,7 @@
 package com.example.demo.login.repository.jdbc;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -36,9 +37,14 @@ public class CustomerDaoJdbcImpl implements CustomerDao{
 	}
 
 	@Override
-	public Customer selectOne(String customerId) throws DataAccessException {
+	public Boolean selectOne(String customerId,String password) throws DataAccessException {
 		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		Boolean isbool = false;
+		Map<String,Object> map = jdbc.queryForMap("Select * From Customer where customerId= ? and password = ?",customerId,password);
+		if(map.size() > 0) {
+			isbool = true;
+		}
+		return isbool;
 	}
 
 	@Override
@@ -82,11 +88,33 @@ public class CustomerDaoJdbcImpl implements CustomerDao{
         String sql = "SELECT * FROM purchase";
 
         // ResultSetExtractorの生成
-        UserRowCallbackHandler handler = new UserRowCallbackHandler();
+        //CustomerRowCallbackHandler handler = new CustomerRowCallbackHandler();
 
         //SQL実行＆CSV出力
-        jdbc.query(sql, handler);
+        //jdbc.query(sql, handler);
 
+	}
+
+	@Override
+	public List<Customer> selectMany(String customerid) throws DataAccessException {
+		// TODO 自動生成されたメソッド・スタブ
+		List<Map<String,Object>> getList = jdbc.queryForList("select * from customer where customerid = ?",customerid);
+		//結果返却用の変数
+		List<Customer> customerData = new ArrayList<>();
+
+		//取得したデータを結果返却用のListに格納していく
+		for(Map<String,Object> map : getList) {
+			Customer customer = new Customer();
+			customer.setCustomerId((String)map.get("customerid"));
+			customer.setPassword((String)map.get("password"));
+			customer.setCustomerName((String)map.get("customername"));
+			customer.setBirthday((Date)map.get("birthday"));
+			customer.setAge((int)map.get("age"));
+			customer.setRole((String)map.get("role"));
+
+			customerData.add(customer);
+		}
+		return customerData;
 	}
 
 

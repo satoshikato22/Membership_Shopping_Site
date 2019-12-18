@@ -20,6 +20,11 @@ public class CustomerService {
 	@Autowired
 	CustomerDao dao;
 
+	public Boolean selectOne(String id,String password) {
+		Boolean isbool = dao.selectOne(id, password);
+		return isbool;
+	}
+
 	public boolean insert(Customer customer) {
 		//insert実行
 		int rowNumber = dao.insertOne(customer);
@@ -62,6 +67,11 @@ public class CustomerService {
         byte[] bytes = Files.readAllBytes(p);
 
         return bytes;
+    }
+    public List<Customer> selectMany(String customerid){
+
+		return dao.selectMany(customerid);
+
     }
 
 

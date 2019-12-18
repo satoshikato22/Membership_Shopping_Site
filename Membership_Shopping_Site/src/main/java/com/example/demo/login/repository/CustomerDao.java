@@ -13,7 +13,7 @@ public interface CustomerDao {
 	//Customerテーブルにデータを1件追加
 	public int insertOne(Customer customer) throws DataAccessException;
 	//Customerテーブルのデータを1件取得
-	public Customer selectOne(String customerId) throws DataAccessException;
+	public Boolean selectOne(String customerId,String password) throws DataAccessException;
 	//商品購入履歴を取得
 	public List<PurchaseHistory> selectHistory() throws DataAccessException;
 	//Customerテーブルのデータを1件更新
@@ -22,4 +22,6 @@ public interface CustomerDao {
 	public int deleteOne(String customerId) throws DataAccessException;
 	//SQL取得結果をサーバーにCSVで保存する
 	public void customerCsvOut() throws DataAccessException;
+	//session用にCustomerを取得
+	public List<Customer> selectMany(String customerid) throws DataAccessException;
 }
