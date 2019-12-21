@@ -1,7 +1,5 @@
 package com.example.demo.login.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,9 +35,11 @@ public class LoginController {
     @PostMapping("/login")
     public String postLogin(Model model,@RequestParam("id")String id,@RequestParam("password")String password) {
     	Boolean isbool = customerService.selectOne(id,password);
-    	List<Customer> customer = (List<Customer>) session.getAttribute("customer");
+
+
+
     	if(isbool == true) {
-    		customer = customerService.selectMany(id);
+    		Customer  customer = customerService.selectinfo(id,password);
     		session.setAttribute("customer", customer);
     		return "redirect:/home";
     	}

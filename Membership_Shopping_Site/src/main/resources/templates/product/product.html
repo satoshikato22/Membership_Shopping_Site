@@ -6,6 +6,7 @@
 </head>
 <body>
 <h1>商品検索画面</h1>
+
 <form action="/product" method="post">
 商品名を入力<input type="text" name="keyword" th:value="${keyword1_value}" />
 <input type="submit" value="送信">
@@ -17,7 +18,6 @@
 	<p th:text="${product.price}" />
 	<a href="/cartAdd" th:href="@{/cartAdd(id=${product.id})}">カートに追加</a>
 </div>
-
 
 </body>
 </html>

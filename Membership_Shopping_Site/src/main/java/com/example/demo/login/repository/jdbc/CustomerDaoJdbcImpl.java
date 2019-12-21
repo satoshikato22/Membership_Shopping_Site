@@ -48,9 +48,9 @@ public class CustomerDaoJdbcImpl implements CustomerDao{
 	}
 
 	@Override
-	public List<PurchaseHistory> selectHistory() throws DataAccessException {
+	public List<PurchaseHistory> selectHistory(String name) throws DataAccessException {
 		// TODO 自動生成されたメソッド・スタブ
-		List<Map<String,Object>> getList = jdbc.queryForList("select * from Purchase");
+		List<Map<String,Object>> getList = jdbc.queryForList("select * from Purchase where customername = ?",name);
 		//結果返却用の変数
 		List<PurchaseHistory> historyList = new ArrayList<>();
 
@@ -115,6 +115,27 @@ public class CustomerDaoJdbcImpl implements CustomerDao{
 			customerData.add(customer);
 		}
 		return customerData;
+	}
+
+	@Override
+	public Customer selectinfo(String customerId, String password) throws DataAccessException {
+		// TODO 自動生成されたメソッド・スタブ
+		// TODO 自動生成されたメソッド・スタブ
+				Map<String,Object> map = jdbc.queryForMap("Select * From Customer where customerId= ? and password = ?",customerId,password);
+				//List<Customer> customerinfo = new ArrayList<>();
+
+				//取得したデータを結果返却用のListに格納していく
+					Customer customer = new Customer();
+					customer.setCustomerId((String)map.get("customerid"));
+					customer.setPassword((String)map.get("password"));
+					customer.setCustomerName((String)map.get("customername"));
+					customer.setBirthday((Date)map.get("birthday"));
+					customer.setAge((int)map.get("age"));
+					customer.setRole((String)map.get("role"));
+
+
+
+		return customer;
 	}
 
 

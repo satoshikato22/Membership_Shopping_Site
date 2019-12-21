@@ -39,9 +39,9 @@ public class CustomerService {
 		return result;
 
 	}
-	public List<PurchaseHistory> selectHistory(){
+	public List<PurchaseHistory> selectHistory(String customername){
 
-		return dao.selectHistory();
+		return dao.selectHistory(customername);
 	}
 	//ユーザー一覧をCSV出力する.
     /**
@@ -73,6 +73,11 @@ public class CustomerService {
 		return dao.selectMany(customerid);
 
     }
+    public Customer selectinfo(String customerId, String password) throws DataAccessException {
+		// TODO 自動生成されたメソッド・スタブ
+
+		return dao.selectinfo(customerId, password);
+	}
 
 
 }

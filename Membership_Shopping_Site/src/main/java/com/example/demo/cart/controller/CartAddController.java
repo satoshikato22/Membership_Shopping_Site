@@ -22,6 +22,22 @@ public class CartAddController {
 	@Autowired
 	HttpServletRequest request;
 
+	//home画面からの画面遷移に使用する
+	@GetMapping("/cart")
+	public String getCart() {
+
+
+		List<Item> cart = (List<Item>) session.getAttribute("cart");
+		if(cart == null) {
+			cart = new ArrayList<Item>();
+			session.setAttribute("cart", cart);
+		}
+
+				return "cart/cart";
+
+		}
+
+
 	@GetMapping("/cartAdd")
 	public String getCartAdd(@RequestParam String id,Model model) {
 		int id1 = Integer.parseInt(id);
