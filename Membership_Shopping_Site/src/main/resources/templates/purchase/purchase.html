@@ -7,13 +7,16 @@
 </head>
 <body>
 <div th:fragment="purchase_contents">
+<div class="page-header">
 <h1>商品検索画面</h1>
+</div>
 <form action="/product" method="post">
 商品名を入力<input type="text" name="keyword" th:value="${keyword1_value}" />
 <input type="submit" value="送信">
 </form>
-
+<div class="page-header">
 <h1>購入画面</h1>
+</div>
 <p th:text="${session.cart.size()} > 0 ? ${session.cart.size()} +'種類の商品があります':'カートに商品がありません'"></p>
 
 	<div class="row">
