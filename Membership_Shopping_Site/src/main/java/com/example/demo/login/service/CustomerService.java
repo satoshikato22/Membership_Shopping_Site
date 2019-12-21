@@ -43,14 +43,6 @@ public class CustomerService {
 
 		return dao.selectHistory(customername);
 	}
-	//ユーザー一覧をCSV出力する.
-    /**
-     * @throws DataAccessException
-     */
-    public void customerCsvOut() throws DataAccessException {
-        //CSV出力
-        dao.customerCsvOut();
-    }
 
     /**
      * サーバーに保存されているファイルを取得して、byte配列に変換する.

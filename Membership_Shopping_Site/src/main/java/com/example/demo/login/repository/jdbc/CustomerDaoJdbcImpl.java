@@ -81,19 +81,6 @@ public class CustomerDaoJdbcImpl implements CustomerDao{
 		return 0;
 	}
 
-	@Override
-	public void customerCsvOut() throws DataAccessException {
-		// TODO 自動生成されたメソッド・スタブ
-		// M_USERテーブルのデータを全件取得するSQL
-        String sql = "SELECT * FROM purchase";
-
-        // ResultSetExtractorの生成
-        //CustomerRowCallbackHandler handler = new CustomerRowCallbackHandler();
-
-        //SQL実行＆CSV出力
-        //jdbc.query(sql, handler);
-
-	}
 
 	@Override
 	public List<Customer> selectMany(String customerid) throws DataAccessException {

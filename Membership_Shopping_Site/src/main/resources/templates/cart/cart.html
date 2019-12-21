@@ -13,20 +13,30 @@
 <input type="submit" value="送信">
 </form>
 <div class="page-header">
-            <h1>商品一覧</h1>
- </div>
+     <h1>商品一覧</h1>
+</div>
 <p th:text="${session.cart.size()} > 0 ? ${session.cart.size()} +'種類の商品があります':'カートに商品がありません'"></p>
 
+<div class="row">
+
 <div th:each="item : ${session.cart}">
-	<img th:src="@{/image/{items}.jpg(items=${item.product.id})}" height="96"></img>
-	<p th:text="${item.product.name}" />
-	<p th:text="${item.product.price}" />
-	<p th:text="${item.count}" />
+<div class="col-lg-4 box">
+	<p th:text="'商品NO:'+${item.product.id}" />
+	<header>
+	<img th:src="@{/image/{items}.jpg(items=${item.product.id})}" height="50" width="100"></img>
+	</header>
+
+	<div class="menubody">
+	<p th:text="'商品名'+${item.product.name}" />
+	<p th:text="'商品価格'+${item.product.price}+'円'" />
+	<p th:text="${item.count}+'個'" />
 	<p><a href="/cartRemove" th:href="@{/cartRemove(id=${item.product.id})}">カートから削除</a></p>
-</div>
+	</div>
 	<span th:if="${session.cart.size() > 0}">
     	<p><a href="/purchase" th:href="@{/purchase}">購入する</a></p>
 	</span>
+	</div>
+</div>
 	</div>
 </body>
 </html>

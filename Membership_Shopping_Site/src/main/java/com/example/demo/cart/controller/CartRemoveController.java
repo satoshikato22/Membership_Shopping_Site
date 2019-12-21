@@ -19,6 +19,7 @@ public class CartRemoveController {
 	@SuppressWarnings("unchecked")
 	@GetMapping("/cartRemove")
 	public String getRemove(@RequestParam String id,Model model ) {
+		model.addAttribute("contents", "purchase/purchase :: purchase_contents");
 		int id1 = Integer.parseInt(id);
 		List<Item> cart = (List<Item>) session.getAttribute("cart");
 		for(Item i : cart) {
@@ -27,7 +28,7 @@ public class CartRemoveController {
 				break;
 			}
 		}
-		return "cart/cart";
+		return "login/homeLayout";
 
 	}
 }

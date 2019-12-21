@@ -13,15 +13,23 @@
 <input type="submit" value="送信">
 </form>
 <h1>商品一覧</h1>
+<div class="row">
+
 	<div th:each="product : ${productList}">
-	<p th:text="${product.id}" />
-	<img th:src="@{/image/{items}.jpg(items=${product.id})}" height="30"/>
-	<p th:text="${product.name}" />
-	<p th:text="${product.price}" />
+<div class="col-lg-4 box">
+	<p th:text="'商品NO:'+${product.id}" />
+	<header>
+	<img th:src="@{/image/{items}.jpg(items=${product.id})}" height="50" width="100"/>
+	</header>
+	<div class="menubody">
+	<p th:text="'商品名:'+${product.name}" />
+	<p th:text="'商品価格:'+${product.price}+'円'" />
 	<a href="/cartAdd" th:href="@{/cartAdd(id=${product.id})}">カートに追加</a>
 	</div>
+</div>
+</div>
+
+</div>
 	</div>
-
-
 </body>
 </html>
