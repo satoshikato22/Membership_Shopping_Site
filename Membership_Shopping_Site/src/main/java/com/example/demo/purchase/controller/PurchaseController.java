@@ -26,13 +26,13 @@ public class PurchaseController {
 	@SuppressWarnings("unchecked")
 	@GetMapping("/purchase")
 	public String GetPurchase(Model model) {
-
-
-		return "purchase/purchase";
+		model.addAttribute("contents", "purchase/purchase :: purchase_contents");
+		return "login/homeLayout";
 
 	}
 	@PostMapping("/purchase")
-	public String PostPurchase(@RequestParam("name") String name,@RequestParam("address") String address) {
+	public String PostPurchase(@RequestParam("name") String name,@RequestParam("address") String address,Model model) {
+		model.addAttribute("contents", "purchase/purchase-out :: purchase-out_contents");
 		if(name.isEmpty() || address.isEmpty()) {
 			//th:Objectにてnullチェック
 		}
@@ -47,6 +47,6 @@ public class PurchaseController {
 			System.out.println("insert 失敗");
 		}
 		session.removeAttribute("cart");
-		return "purchase/purchase-out";
+		return "login/homeLayout";
 	}
 }

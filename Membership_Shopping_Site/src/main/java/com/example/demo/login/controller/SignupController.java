@@ -47,6 +47,7 @@ public class SignupController {
     	//ユーザー登録結果の判定
     	if(result == true) {
     		System.out.println("insert 成功");
+    		return "redirect:/login";
     	}else {
     		System.out.println("insert 失敗");
     	}

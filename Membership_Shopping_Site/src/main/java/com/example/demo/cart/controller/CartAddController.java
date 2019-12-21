@@ -24,8 +24,9 @@ public class CartAddController {
 
 	//home画面からの画面遷移に使用する
 	@GetMapping("/cart")
-	public String getCart() {
-
+	public String getCart(Model model) {
+		//コンテンツ部分にユーザー一覧を表示するための文字列を登録
+		model.addAttribute("contents", "cart/cart :: cart_contents");
 
 		List<Item> cart = (List<Item>) session.getAttribute("cart");
 		if(cart == null) {
@@ -33,13 +34,14 @@ public class CartAddController {
 			session.setAttribute("cart", cart);
 		}
 
-				return "cart/cart";
+				return "login/homeLayout";
 
 		}
 
 
 	@GetMapping("/cartAdd")
 	public String getCartAdd(@RequestParam String id,Model model) {
+		model.addAttribute("contents", "cart/cart :: cart_contents");
 		int id1 = Integer.parseInt(id);
 
 		List<Item> cart = (List<Item>) session.getAttribute("cart");
@@ -50,7 +52,7 @@ public class CartAddController {
 		for(Item i : cart) {
 			if(i.getProduct().getId()==id1) {
 				i.setCount(i.getCount()+1);
-				return "cart/cart";
+				return "login/homeLayout";
 			}
 		}
 		List<Product> productList = (List<Product>) session.getAttribute("productList");
@@ -63,7 +65,7 @@ public class CartAddController {
 			}
 		}
 
-		return "cart/cart";
+		return "login/homeLayout";
 
 	}
 }

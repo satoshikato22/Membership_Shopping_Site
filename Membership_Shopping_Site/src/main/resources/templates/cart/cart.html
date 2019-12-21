@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
 <title>cart</title>
 </head>
 <body>
+<div th:fragment="cart_contents">
 <h1>商品検索画面</h1>
 <form action="/product" method="post">
 商品名を入力<input type="text" name="keyword" th:value="${keyword1_value}" />
 <input type="submit" value="送信">
 </form>
-<h1>テストページ</h1>
+<div class="page-header">
+            <h1>商品一覧</h1>
+ </div>
 <p th:text="${session.cart.size()} > 0 ? ${session.cart.size()} +'種類の商品があります':'カートに商品がありません'"></p>
 
 <div th:each="item : ${session.cart}">
-	<!-- <img th:src = "@{image/${item.product.id}.jpg}" height="96"/>  -->
-	<!-- <img src="/image/1.jpg" height="96"></img>  -->
 	<img th:src="@{/image/{items}.jpg(items=${item.product.id})}" height="96"></img>
 	<p th:text="${item.product.name}" />
 	<p th:text="${item.product.price}" />
@@ -25,5 +27,6 @@
 	<span th:if="${session.cart.size() > 0}">
     	<p><a href="/purchase" th:href="@{/purchase}">購入する</a></p>
 	</span>
+	</div>
 </body>
 </html>

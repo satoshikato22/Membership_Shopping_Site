@@ -24,6 +24,7 @@ public class ProductController {
 
 	@GetMapping("/product")
 	public String getProduct(Model model) {
+		model.addAttribute("contents", "product/product :: product_contents");
 		List<Product> productList = productService.selectMany();
 		model.addAttribute("productList",productList);
 
@@ -33,14 +34,15 @@ public class ProductController {
 		session.setAttribute("productList", productList);
 
 
-		return "product/product";
+		return "login/homeLayout";
 	}
 	@PostMapping("/product")
 	public String postProduct(@RequestParam String keyword,Model model) {
+		model.addAttribute("contents", "product/productResult :: productResult_contents");
 		List<Product> productList = productService.selectOne(keyword);
 		model.addAttribute("productList",productList);
 		session.setAttribute("productList", productList);
-		return "product/productResult";
+		return "login/homeLayout";
 
 	}
 

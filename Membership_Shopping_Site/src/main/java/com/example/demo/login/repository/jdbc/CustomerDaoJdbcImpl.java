@@ -30,7 +30,7 @@ public class CustomerDaoJdbcImpl implements CustomerDao{
 	public int insertOne(Customer customer) throws DataAccessException {
 		// TODO 自動生成されたメソッド・スタブ
 		//1件登録
-		int rowNumber = jdbc.update("insert into Customer(customerId,password,customerName,birthday,age,role)",
+		int rowNumber = jdbc.update("insert into Customer(customerId,password,customerName,birthday,age,role) values(?,?,?,?,?,?)",
 				customer.getCustomerId(),customer.getPassword(),customer.getCustomerName(),customer.getBirthday(),customer.getAge(),customer.getRole());
 
 		return rowNumber;
