@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 public class LoginForm {
 	//必須入力、メールアドレス形式
-    @NotBlank(groups = ValidGroup1.class, message = "{require_check}")
+	@NotBlank(groups = ValidGroup1.class, message = "{require_check}")
     @Email(groups = ValidGroup2.class, message = "{email_check}")
     private String customerId; // ユーザーID
 

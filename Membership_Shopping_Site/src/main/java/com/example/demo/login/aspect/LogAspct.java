@@ -12,7 +12,7 @@ public class LogAspct {
     /**
      * コントローラークラスのログ出力用アスペクト.
      */
-    @Around("@within(org.springframework.stereotype.Controller)")
+    @Around("execution(* *..*.*Controller.*(..)) ")
     public Object startLog(ProceedingJoinPoint jp) throws Throwable {
 
         System.out.println("メソッド開始： " + jp.getSignature());

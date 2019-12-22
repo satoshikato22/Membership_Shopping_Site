@@ -11,14 +11,14 @@
 <body class="text-center">
 	<h1>Login</h1>
 	<form method="post" th:action="@{/login}" th:object="${loginForm}">
-		<label>ユーザーID</label><br>
+		<label>ユーザーID</label>
 	<div class="form-group" th:classappend="${#fields.hasErrors('customerId')} ? 'has-error'">
-		<input type="text" th:field="*{customerId}"/> <br>
+		<input type="text" th:field="*{customerId}"/><br>
     <span class="text-danger" th:if="${#fields.hasErrors('customerId')}" th:errors="*{customerId}">customerId error</span>
     </div>
-	<label>パスワード</label><br>
+	<label>パスワード</label>
 	<div class="form-group" th:classappend="${#fields.hasErrors('password')} ? 'has-error'">
-          <input type="text" th:field="*{password}" /><br>
+          <input type="password" th:field="*{password}" /><br>
     <span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">password error</span>
     </div>
 	<button class="btn btn-primary" type="submit">ログイン</button>
