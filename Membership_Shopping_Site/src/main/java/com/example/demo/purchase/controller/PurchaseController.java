@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.cart.model.Item;
-import com.example.demo.purchase.repository.PurchaseDao;
-import com.example.demo.purchase.repository.jdbc.PurchaseDaoJdbcImpl;
 import com.example.demo.purchase.service.PurchaseService;
 
 @Controller
@@ -35,8 +33,9 @@ public class PurchaseController {
 		model.addAttribute("contents", "purchase/purchase-out :: purchase-out_contents");
 		if(name.isEmpty() || address.isEmpty()) {
 			//th:Objectにてnullチェック
+			//エラー画面へ繊維かな？
 		}
-		PurchaseDao dao = new PurchaseDaoJdbcImpl();
+		//PurchaseDao dao = new PurchaseDaoJdbcImpl();
 		List<Item> cart = (List<Item>) session.getAttribute("cart");
 
 		boolean result = purchaseService.insert(cart,name,address);

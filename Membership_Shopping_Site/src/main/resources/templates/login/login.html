@@ -8,19 +8,23 @@
     <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 <title>Login</title>
 </head>
-<p th:text="${success}"></p>
 <body class="text-center">
 	<h1>Login</h1>
-	<form method="post" action="/login">
-	<label>ユーザーID</label>
-	<input type="text" name="id" /><br />
-	<br />
-	<label>パスワード</label>
-	<input type="password" name="password" /><br />
-	<br />
+	<form method="post" th:action="@{/login}" th:object="${loginForm}">
+		<label>ユーザーID</label><br>
+	<div class="form-group" th:classappend="${#fields.hasErrors('customerId')} ? 'has-error'">
+		<input type="text" th:field="*{customerId}"/> <br>
+    <span class="text-danger" th:if="${#fields.hasErrors('customerId')}" th:errors="*{customerId}">customerId error</span>
+    </div>
+	<label>パスワード</label><br>
+	<div class="form-group" th:classappend="${#fields.hasErrors('password')} ? 'has-error'">
+          <input type="text" th:field="*{password}" /><br>
+    <span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">password error</span>
+    </div>
 	<button class="btn btn-primary" type="submit">ログイン</button>
 	</form>
 	<a th:href="@{'/signup'}">ユーザー新規登録はこちら</a>
+
 
 </body>
 </html>
